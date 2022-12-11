@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 namespace Project.Utilities
 {
@@ -37,131 +37,131 @@ namespace Project.Utilities
 		[HorizontalGroup("RangeInt")]
 		public int max;
 	}
-		public struct Vector3Int : IComparable<Vector3Int>
+
+	public struct Vector3Int : IComparable<Vector3Int>
+	{
+		public int x;
+		public int y;
+		public int z;
+
+		public static Vector3Int size0x0x0
 		{
-			public int x;
-			public int y;
-			public int z;
-
-			public static Vector3Int size0x0x0
-			{
-				get { return new Vector3Int(0, 0, 0); }
-			}
-
-			public static Vector3Int size1x1x1
-			{
-				get { return new Vector3Int(1, 1, 1); }
-			}
-
-			public static Vector3Int size1x1x1Neg
-			{
-				get { return new Vector3Int(-1, -1, -1); }
-			}
-
-			public static Vector3Int size2x2x2
-			{
-				get { return new Vector3Int(2, 2, 2); }
-			}
-
-			public static Vector3Int size2x2x2Neg
-			{
-				get { return new Vector3Int(-2, -2, -2); }
-			}
-
-			public static Vector3Int size3x3x3
-			{
-				get { return new Vector3Int(3, 3, 3); }
-			}
-
-			public static Vector3Int size3x1x3
-			{
-				get { return new Vector3Int(3, 1, 3); }
-			}
-
-			public Vector3Int(int x, int y, int z)
-			{
-				this.x = x;
-				this.y = y;
-				this.z = z;
-			}
-
-			public Vector3Int(Vector3 vector3Float)
-			{
-				x = Mathf.RoundToInt(vector3Float.x);
-				y = Mathf.RoundToInt(vector3Float.y);
-				z = Mathf.RoundToInt(vector3Float.z);
-			}
-
-			public override string ToString()
-			{
-				var result = "(" + x + ", " + y + ", " + z + ")";
-				return result;
-			}
-
-			public Vector3Int Invert()
-			{
-				return new Vector3Int(-x, -y, -z);
-			}
-
-			public Vector3 ToVector3()
-			{
-				return new Vector3(x, y, z);
-			}
-
-			public override int GetHashCode()
-			{
-				return x.GetHashCode() ^ y.GetHashCode() ^ z.GetHashCode();
-			}
-
-			public override bool Equals(object obj)
-			{
-				return obj is Vector3Int && this == (Vector3Int)obj;
-			}
-
-			public static bool operator ==(Vector3Int a, Vector3Int b)
-			{
-				return a.x == b.x && a.y == b.y && a.z == b.z;
-			}
-
-			public static bool operator !=(Vector3Int a, Vector3Int b)
-			{
-				return a.x != b.x || a.y != b.y || a.z != b.z;
-			}
-
-			public static Vector3Int operator *(Vector3Int a, Vector3Int b)
-			{
-				return new Vector3Int(a.x * b.x, a.y * b.y, a.z * b.z);
-			}
-
-			public static Vector3Int operator *(Vector3Int a, int b)
-			{
-				return new Vector3Int(a.x * b, a.y * b, a.z * b);
-			}
-
-			public static Vector3Int operator /(Vector3Int a, int b)
-			{
-				return new Vector3Int(a.x / b, a.y / b, a.z / b);
-			}
-
-			public static Vector3Int operator +(Vector3Int a, Vector3Int b)
-			{
-				return new Vector3Int(a.x + b.x, a.y + b.y, a.z + b.z);
-			}
-
-			public static Vector3Int operator -(Vector3Int a, Vector3Int b)
-			{
-				return new Vector3Int(a.x - b.x, a.y - b.y, a.z - b.z);
-			}
-
-			public int CompareTo(Vector3Int other)
-			{
-				return x.CompareTo(other.x) + y.CompareTo(other.y) + z.CompareTo(other.z);
-			}
+			get { return new Vector3Int(0, 0, 0); }
 		}
+
+		public static Vector3Int size1x1x1
+		{
+			get { return new Vector3Int(1, 1, 1); }
+		}
+
+		public static Vector3Int size1x1x1Neg
+		{
+			get { return new Vector3Int(-1, -1, -1); }
+		}
+
+		public static Vector3Int size2x2x2
+		{
+			get { return new Vector3Int(2, 2, 2); }
+		}
+
+		public static Vector3Int size2x2x2Neg
+		{
+			get { return new Vector3Int(-2, -2, -2); }
+		}
+
+		public static Vector3Int size3x3x3
+		{
+			get { return new Vector3Int(3, 3, 3); }
+		}
+
+		public static Vector3Int size3x1x3
+		{
+			get { return new Vector3Int(3, 1, 3); }
+		}
+
+		public Vector3Int(int x, int y, int z)
+		{
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		public Vector3Int(Vector3 vector3Float)
+		{
+			x = Mathf.RoundToInt(vector3Float.x);
+			y = Mathf.RoundToInt(vector3Float.y);
+			z = Mathf.RoundToInt(vector3Float.z);
+		}
+
+		public override string ToString()
+		{
+			var result = "(" + x + ", " + y + ", " + z + ")";
+			return result;
+		}
+
+		public Vector3Int Invert()
+		{
+			return new Vector3Int(-x, -y, -z);
+		}
+
+		public Vector3 ToVector3()
+		{
+			return new Vector3(x, y, z);
+		}
+
+		public override int GetHashCode()
+		{
+			return x.GetHashCode() ^ y.GetHashCode() ^ z.GetHashCode();
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is Vector3Int && this == (Vector3Int)obj;
+		}
+
+		public static bool operator ==(Vector3Int a, Vector3Int b)
+		{
+			return a.x == b.x && a.y == b.y && a.z == b.z;
+		}
+
+		public static bool operator !=(Vector3Int a, Vector3Int b)
+		{
+			return a.x != b.x || a.y != b.y || a.z != b.z;
+		}
+
+		public static Vector3Int operator *(Vector3Int a, Vector3Int b)
+		{
+			return new Vector3Int(a.x * b.x, a.y * b.y, a.z * b.z);
+		}
+
+		public static Vector3Int operator *(Vector3Int a, int b)
+		{
+			return new Vector3Int(a.x * b, a.y * b, a.z * b);
+		}
+
+		public static Vector3Int operator /(Vector3Int a, int b)
+		{
+			return new Vector3Int(a.x / b, a.y / b, a.z / b);
+		}
+
+		public static Vector3Int operator +(Vector3Int a, Vector3Int b)
+		{
+			return new Vector3Int(a.x + b.x, a.y + b.y, a.z + b.z);
+		}
+
+		public static Vector3Int operator -(Vector3Int a, Vector3Int b)
+		{
+			return new Vector3Int(a.x - b.x, a.y - b.y, a.z - b.z);
+		}
+
+		public int CompareTo(Vector3Int other)
+		{
+			return x.CompareTo(other.x) + y.CompareTo(other.y) + z.CompareTo(other.z);
+		}
+	}
 
 	public static class UMath
 	{
-	
 		public static bool RoughlyEqual(this float a, float b, float threshold = 0.01f)
 		{
 			return Mathf.Abs(a - b) <= threshold;
@@ -308,22 +308,24 @@ namespace Project.Utilities
 		{
 			public static int GetRandomMean(int mean, int range)
 			{
-				return mean + Random.Range(-range, range);
+				return mean + UnityEngine.Random.Range(-range, range);
 			}
 
 			public static float GetRandomMean(float mean, float range)
 			{
-				return mean + Random.Range(-range, range);
+				return mean + UnityEngine.Random.Range(-range, range);
 			}
 
 			public static float GetRandomRange(RangeFloat rangeFloat)
 			{
-				return Random.Range(rangeFloat.min, rangeFloat.max);
+				return UnityEngine.Random.Range(rangeFloat.min, rangeFloat.max);
 			}
+
 			public static float GetRandomRange(RangeInt rangeInt)
 			{
-				return Random.Range(rangeInt.min, rangeInt.max);
+				return UnityEngine.Random.Range(rangeInt.min, rangeInt.max);
 			}
+
 			public static string GetRandomArrayElement(string[] collection)
 			{
 				var random = GetRandomElement(collection);
@@ -337,7 +339,7 @@ namespace Project.Utilities
 				{
 					Count: > 0
 				}
-					? collection[Random.Range(0, collection.Count)]
+					? collection[UnityEngine.Random.Range(0, collection.Count)]
 					: default;
 			}
 
@@ -347,10 +349,9 @@ namespace Project.Utilities
 				{
 					Length: > 0
 				}
-					? collection[Random.Range(0, collection.Length)]
+					? collection[UnityEngine.Random.Range(0, collection.Length)]
 					: default;
 			}
-
 		}
 
 		public static class Remap
@@ -414,6 +415,7 @@ namespace Project.Utilities
 
 			return collection.Contains(entry);
 		}
+
 		public static bool ArraysEqualCheck<T>(T[] first, T[] second)
 		{
 			if (ReferenceEquals(first, second))
@@ -437,8 +439,6 @@ namespace Project.Utilities
 
 			return true;
 		}
-
-
 
 		public static TKey GetRandomKey<TKey, TValue>(this IDictionary<TKey, TValue> dict)
 		{
@@ -773,13 +773,14 @@ namespace Project.Utilities
 	public static class ThreadSafeRandom
 	{
 		[ThreadStatic]
-		private static System.Random Local;
+		private static Random Local;
 
-		public static System.Random ThisThreadsRandom
+		public static Random ThisThreadsRandom
 		{
 			get
 			{
-				return Local ??= new System.Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId));
+				return Local ??=
+					       new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId));
 			}
 		}
 	}
