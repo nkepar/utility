@@ -1,10 +1,10 @@
 {
   "name": "com.nkepar.utility",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "unity": "2019.4",
   "displayName": "nkepar's utilities",
   "description": "Collection of utilities",
   "dependencies": {
-    "odin":"^3.1.9" 
+    "odin":"3.0.0" 
   }
 }
