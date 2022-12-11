@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Object = UnityEngine.Object;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 namespace Project.Utilities
 {
@@ -37,131 +37,131 @@ namespace Project.Utilities
 		[HorizontalGroup("RangeInt")]
 		public int max;
 	}
-
-	public struct Vector3Int : IComparable<Vector3Int>
-	{
-		public int x;
-		public int y;
-		public int z;
-
-		public static Vector3Int size0x0x0
+		public struct Vector3Int : IComparable<Vector3Int>
 		{
-			get { return new Vector3Int(0, 0, 0); }
-		}
+			public int x;
+			public int y;
+			public int z;
 
-		public static Vector3Int size1x1x1
-		{
-			get { return new Vector3Int(1, 1, 1); }
-		}
+			public static Vector3Int size0x0x0
+			{
+				get { return new Vector3Int(0, 0, 0); }
+			}
 
-		public static Vector3Int size1x1x1Neg
-		{
-			get { return new Vector3Int(-1, -1, -1); }
-		}
+			public static Vector3Int size1x1x1
+			{
+				get { return new Vector3Int(1, 1, 1); }
+			}
 
-		public static Vector3Int size2x2x2
-		{
-			get { return new Vector3Int(2, 2, 2); }
-		}
+			public static Vector3Int size1x1x1Neg
+			{
+				get { return new Vector3Int(-1, -1, -1); }
+			}
 
-		public static Vector3Int size2x2x2Neg
-		{
-			get { return new Vector3Int(-2, -2, -2); }
-		}
+			public static Vector3Int size2x2x2
+			{
+				get { return new Vector3Int(2, 2, 2); }
+			}
 
-		public static Vector3Int size3x3x3
-		{
-			get { return new Vector3Int(3, 3, 3); }
-		}
+			public static Vector3Int size2x2x2Neg
+			{
+				get { return new Vector3Int(-2, -2, -2); }
+			}
 
-		public static Vector3Int size3x1x3
-		{
-			get { return new Vector3Int(3, 1, 3); }
-		}
+			public static Vector3Int size3x3x3
+			{
+				get { return new Vector3Int(3, 3, 3); }
+			}
 
-		public Vector3Int(int x, int y, int z)
-		{
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
+			public static Vector3Int size3x1x3
+			{
+				get { return new Vector3Int(3, 1, 3); }
+			}
 
-		public Vector3Int(Vector3 vector3Float)
-		{
-			x = Mathf.RoundToInt(vector3Float.x);
-			y = Mathf.RoundToInt(vector3Float.y);
-			z = Mathf.RoundToInt(vector3Float.z);
-		}
+			public Vector3Int(int x, int y, int z)
+			{
+				this.x = x;
+				this.y = y;
+				this.z = z;
+			}
 
-		public override string ToString()
-		{
-			var result = "(" + x + ", " + y + ", " + z + ")";
-			return result;
-		}
+			public Vector3Int(Vector3 vector3Float)
+			{
+				x = Mathf.RoundToInt(vector3Float.x);
+				y = Mathf.RoundToInt(vector3Float.y);
+				z = Mathf.RoundToInt(vector3Float.z);
+			}
 
-		public Vector3Int Invert()
-		{
-			return new Vector3Int(-x, -y, -z);
-		}
+			public override string ToString()
+			{
+				var result = "(" + x + ", " + y + ", " + z + ")";
+				return result;
+			}
 
-		public Vector3 ToVector3()
-		{
-			return new Vector3(x, y, z);
-		}
+			public Vector3Int Invert()
+			{
+				return new Vector3Int(-x, -y, -z);
+			}
 
-		public override int GetHashCode()
-		{
-			return x.GetHashCode() ^ y.GetHashCode() ^ z.GetHashCode();
-		}
+			public Vector3 ToVector3()
+			{
+				return new Vector3(x, y, z);
+			}
 
-		public override bool Equals(object obj)
-		{
-			return obj is Vector3Int && this == (Vector3Int)obj;
-		}
+			public override int GetHashCode()
+			{
+				return x.GetHashCode() ^ y.GetHashCode() ^ z.GetHashCode();
+			}
 
-		public static bool operator ==(Vector3Int a, Vector3Int b)
-		{
-			return a.x == b.x && a.y == b.y && a.z == b.z;
-		}
+			public override bool Equals(object obj)
+			{
+				return obj is Vector3Int && this == (Vector3Int)obj;
+			}
 
-		public static bool operator !=(Vector3Int a, Vector3Int b)
-		{
-			return a.x != b.x || a.y != b.y || a.z != b.z;
-		}
+			public static bool operator ==(Vector3Int a, Vector3Int b)
+			{
+				return a.x == b.x && a.y == b.y && a.z == b.z;
+			}
 
-		public static Vector3Int operator *(Vector3Int a, Vector3Int b)
-		{
-			return new Vector3Int(a.x * b.x, a.y * b.y, a.z * b.z);
-		}
+			public static bool operator !=(Vector3Int a, Vector3Int b)
+			{
+				return a.x != b.x || a.y != b.y || a.z != b.z;
+			}
 
-		public static Vector3Int operator *(Vector3Int a, int b)
-		{
-			return new Vector3Int(a.x * b, a.y * b, a.z * b);
-		}
+			public static Vector3Int operator *(Vector3Int a, Vector3Int b)
+			{
+				return new Vector3Int(a.x * b.x, a.y * b.y, a.z * b.z);
+			}
 
-		public static Vector3Int operator /(Vector3Int a, int b)
-		{
-			return new Vector3Int(a.x / b, a.y / b, a.z / b);
-		}
+			public static Vector3Int operator *(Vector3Int a, int b)
+			{
+				return new Vector3Int(a.x * b, a.y * b, a.z * b);
+			}
 
-		public static Vector3Int operator +(Vector3Int a, Vector3Int b)
-		{
-			return new Vector3Int(a.x + b.x, a.y + b.y, a.z + b.z);
-		}
+			public static Vector3Int operator /(Vector3Int a, int b)
+			{
+				return new Vector3Int(a.x / b, a.y / b, a.z / b);
+			}
 
-		public static Vector3Int operator -(Vector3Int a, Vector3Int b)
-		{
-			return new Vector3Int(a.x - b.x, a.y - b.y, a.z - b.z);
-		}
+			public static Vector3Int operator +(Vector3Int a, Vector3Int b)
+			{
+				return new Vector3Int(a.x + b.x, a.y + b.y, a.z + b.z);
+			}
 
-		public int CompareTo(Vector3Int other)
-		{
-			return x.CompareTo(other.x) + y.CompareTo(other.y) + z.CompareTo(other.z);
+			public static Vector3Int operator -(Vector3Int a, Vector3Int b)
+			{
+				return new Vector3Int(a.x - b.x, a.y - b.y, a.z - b.z);
+			}
+
+			public int CompareTo(Vector3Int other)
+			{
+				return x.CompareTo(other.x) + y.CompareTo(other.y) + z.CompareTo(other.z);
+			}
 		}
-	}
 
 	public static class UMath
 	{
+	
 		public static bool RoughlyEqual(this float a, float b, float threshold = 0.01f)
 		{
 			return Mathf.Abs(a - b) <= threshold;
@@ -308,24 +308,22 @@ namespace Project.Utilities
 		{
 			public static int GetRandomMean(int mean, int range)
 			{
-				return mean + UnityEngine.Random.Range(-range, range);
+				return mean + Random.Range(-range, range);
 			}
 
 			public static float GetRandomMean(float mean, float range)
 			{
-				return mean + UnityEngine.Random.Range(-range, range);
+				return mean + Random.Range(-range, range);
 			}
 
 			public static float GetRandomRange(RangeFloat rangeFloat)
 			{
-				return UnityEngine.Random.Range(rangeFloat.min, rangeFloat.max);
+				return Random.Range(rangeFloat.min, rangeFloat.max);
 			}
-
 			public static float GetRandomRange(RangeInt rangeInt)
 			{
-				return UnityEngine.Random.Range(rangeInt.min, rangeInt.max);
+				return Random.Range(rangeInt.min, rangeInt.max);
 			}
-
 			public static string GetRandomArrayElement(string[] collection)
 			{
 				var random = GetRandomElement(collection);
@@ -339,7 +337,7 @@ namespace Project.Utilities
 				{
 					Count: > 0
 				}
-					? collection[UnityEngine.Random.Range(0, collection.Count)]
+					? collection[Random.Range(0, collection.Count)]
 					: default;
 			}
 
@@ -349,9 +347,10 @@ namespace Project.Utilities
 				{
 					Length: > 0
 				}
-					? collection[UnityEngine.Random.Range(0, collection.Length)]
+					? collection[Random.Range(0, collection.Length)]
 					: default;
 			}
+
 		}
 
 		public static class Remap
@@ -380,144 +379,101 @@ namespace Project.Utilities
 
 	public static class UCollections
 	{
-		public static void RotateArrayLeft<T>(this T[] array, int count)
+		public static bool IsBitArrayAllTrue(BitArray bitArray)
 		{
-			if (array == null || array.Length < 2)
+			for (var i = 0; i < bitArray.Count; i++)
 			{
-				return;
-			}
-
-			count %= array.Length;
-			if (count == 0)
-			{
-				return;
-			}
-
-			var left = count < 0 ? -count : array.Length + count;
-			var right = count > 0 ? count : array.Length - count;
-			if (left <= right)
-			{
-				for (var i = 0; i < left; i++)
-				{
-					var temp = array[0];
-					Array.Copy(array,
-					           1,
-					           array,
-					           0,
-					           array.Length - 1);
-					array[^1] = temp;
-				}
-			}
-			else
-			{
-				for (var i = 0; i < right; i++)
-				{
-					var temp = array[^1];
-					Array.Copy(array,
-					           0,
-					           array,
-					           1,
-					           array.Length - 1);
-					array[0] = temp;
-				}
-			}
-
-
-			public static bool IsBitArrayAllTrue(BitArray bitArray)
-			{
-				for (var i = 0; i < bitArray.Count; i++)
-				{
-					if (bitArray[i] == false)
-					{
-						return false;
-					}
-				}
-
-				return true;
-			}
-
-			public static bool Contains(ref int[] source, ref int target)
-			{
-				for (var elementIndex = 0; elementIndex < source.Length; elementIndex++)
-				{
-					if (source[elementIndex] == target)
-					{
-						return true;
-					}
-				}
-
-				return false;
-			}
-
-			public static bool Contains<T>(List<T> collection, T entry)
-			{
-				if (entry is string entryString && string.IsNullOrEmpty(entryString))
+				if (bitArray[i] == false)
 				{
 					return false;
 				}
-
-				return collection.Contains(entry);
 			}
 
-			public static bool ArraysEqualCheck<T>(T[] first, T[] second)
+			return true;
+		}
+
+		public static bool Contains(ref int[] source, ref int target)
+		{
+			for (var elementIndex = 0; elementIndex < source.Length; elementIndex++)
 			{
-				if (ReferenceEquals(first, second))
+				if (source[elementIndex] == target)
 				{
 					return true;
 				}
+			}
 
-				if (first == null || second == null || first.Length != second.Length)
-				{
-					return false;
-				}
+			return false;
+		}
 
-				var comparer = EqualityComparer<T>.Default;
-				for (var i = 0; i < first.Length; i++)
-				{
-					if (!comparer.Equals(first[i], second[i]))
-					{
-						return false;
-					}
-				}
+		public static bool Contains<T>(List<T> collection, T entry)
+		{
+			if (entry is string entryString && string.IsNullOrEmpty(entryString))
+			{
+				return false;
+			}
 
+			return collection.Contains(entry);
+		}
+		public static bool ArraysEqualCheck<T>(T[] first, T[] second)
+		{
+			if (ReferenceEquals(first, second))
+			{
 				return true;
 			}
 
-
-			public static TKey GetRandomKey<TKey, TValue>(this IDictionary<TKey, TValue> dict)
+			if (first == null || second == null || first.Length != second.Length)
 			{
-				if (dict == null || dict.Count == 0)
+				return false;
+			}
+
+			var comparer = EqualityComparer<T>.Default;
+			for (var i = 0; i < first.Length; i++)
+			{
+				if (!comparer.Equals(first[i], second[i]))
 				{
-					return default;
+					return false;
 				}
-
-				return dict.ElementAt(UnityEngine.Random.Range(0, dict.Count)).Key;
 			}
 
-			public static TValue GetRandomValue<TKey, TValue>(this IDictionary<TKey, TValue> dict)
+			return true;
+		}
+
+
+
+		public static TKey GetRandomKey<TKey, TValue>(this IDictionary<TKey, TValue> dict)
+		{
+			if (dict == null || dict.Count == 0)
 			{
-				return dict.ElementAt(UnityEngine.Random.Range(0, dict.Count)).Value;
+				return default;
 			}
 
-			public static T GetRandomEntry<T>(this HashSet<T> set)
+			return dict.ElementAt(UnityEngine.Random.Range(0, dict.Count)).Key;
+		}
+
+		public static TValue GetRandomValue<TKey, TValue>(this IDictionary<TKey, TValue> dict)
+		{
+			return dict.ElementAt(UnityEngine.Random.Range(0, dict.Count)).Value;
+		}
+
+		public static T GetRandomEntry<T>(this HashSet<T> set)
+		{
+			if (set == null || set.Count == 0)
 			{
-				if (set == null || set.Count == 0)
-				{
-					return default;
-				}
-
-				return set.ElementAt(UnityEngine.Random.Range(0, set.Count));
+				return default;
 			}
 
-			public static T GetRandomEntry<T>(this List<T> list)
+			return set.ElementAt(UnityEngine.Random.Range(0, set.Count));
+		}
+
+		public static T GetRandomEntry<T>(this List<T> list)
+		{
+			if (list == null || list.Count == 0)
 			{
-				if (list == null || list.Count == 0)
-				{
-					return default;
-				}
-
-				return list[UnityEngine.Random.Range(0, list.Count)];
+				return default;
 			}
+
+			return list[UnityEngine.Random.Range(0, list.Count)];
+		}
 
 		private static readonly List<(float weight, object element)> weightCache =
 			new List<(float weight, object element)>();
@@ -647,6 +603,49 @@ namespace Project.Utilities
 
 			return null;
 		}
+
+		public static void RotateArrayLeft<T>(this T[] array, int count)
+		{
+			if (array == null || array.Length < 2)
+			{
+				return;
+			}
+
+			count %= array.Length;
+			if (count == 0)
+			{
+				return;
+			}
+
+			var left = count < 0 ? -count : array.Length + count;
+			var right = count > 0 ? count : array.Length - count;
+			if (left <= right)
+			{
+				for (var i = 0; i < left; i++)
+				{
+					var temp = array[0];
+					Array.Copy(array,
+					           1,
+					           array,
+					           0,
+					           array.Length - 1);
+					array[^1] = temp;
+				}
+			}
+			else
+			{
+				for (var i = 0; i < right; i++)
+				{
+					var temp = array[^1];
+					Array.Copy(array,
+					           0,
+					           array,
+					           1,
+					           array.Length - 1);
+					array[0] = temp;
+				}
+			}
+		}
 /*
  public static bool ContainsMoreElements(int[] source, int[] target)
 		{
@@ -774,14 +773,13 @@ namespace Project.Utilities
 	public static class ThreadSafeRandom
 	{
 		[ThreadStatic]
-		private static Random Local;
+		private static System.Random Local;
 
-		public static Random ThisThreadsRandom
+		public static System.Random ThisThreadsRandom
 		{
 			get
 			{
-				return Local ??=
-					       new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId));
+				return Local ??= new System.Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId));
 			}
 		}
 	}
